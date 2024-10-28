@@ -10,4 +10,36 @@ public class Recursividad {
         System.out.println("Resultado parcial para "+n+ " * factorial("+(n-1)+") = "+ resultado);
         return resultado;
     }
+    //Suma de los números consecutivos
+    //n = 5 resultado 5+4+3+2+1 = 15
+    public int sumaConsecutivos(int n) {
+        //Caso base: 1
+        if(n == 1){
+            return 1;
+        }
+        return n + sumaConsecutivos(n-1);
+    }
+
+    //Calcula la potencia de un número
+    public int potencia(int base, int exponente) {
+        // Caso base: 0 
+        if (exponente == 0) {
+            return 1;
+        }
+        return base * potencia(base, exponente - 1);
+    }
+
+    //Crear un método que sume los dijitos de un número si mando 456 sea igual a 15
+    //4+5+6 = 15
+    //Pista se usa el %MOD
+    public int sumaDigitos(int numero) {
+        // Caso base: si el número es 0, la suma es 0
+        if (numero == 0) {
+            return 0;
+        }     
+        return (numero % 10) + sumaDigitos(numero / 10);
+    }
+    
+    
 }
+
