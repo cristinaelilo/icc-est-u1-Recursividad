@@ -12,8 +12,13 @@ public class App {
 
         //System.out.println(rec.fibonacci(8));
 
-        RenombrarDirectorios rd = new RenombrarDirectorios();
-        rd.renombrarDirectorios("src/directorios");
+        // Ruta donde se creará la estructura de directorios
+        String pathBase = "src/directorios";
+        GeneratorDirectorios generador = new GeneratorDirectorios();
+        generador.crearEstructuraDirectorios(pathBase);
+
+        //RenombrarDirectorios rd = new RenombrarDirectorios();
+        //rd.renombrarDirectorios("src/directorios");
 
     }
 }

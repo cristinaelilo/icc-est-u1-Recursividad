@@ -1,7 +1,7 @@
 import java.io.File;
 
 public class RenombrarDirectorios {
-    public void renombrarDirectorios(String path) {
+    public void renombrarDirectorios(String path, String nuevoNombreUsr) {
         File directorio = new File(path);
         
         if (!directorio.exists() || !directorio.isDirectory()) {
@@ -10,11 +10,10 @@ public class RenombrarDirectorios {
         }
         
         System.out.println("La ruta especificada es válida.");
-        renombrarDirectoriosInternos(directorio);
+        renombrarDirectoriosInternos(directorio, nuevoNombreUsr);
     }
 
-    public void renombrarDirectoriosInternos(File directorio) {
-        // Listar todos los archivos y subdirectorios
+    private void renombrarDirectoriosInternos(File directorio, String nuevoNombreUsr) {
         File[] directoriosArchivosInternos = directorio.listFiles();
         if (directoriosArchivosInternos == null) {
             return;
@@ -23,7 +22,7 @@ public class RenombrarDirectorios {
         for (File directorioArchivo : directoriosArchivosInternos) {
             if (directorioArchivo.isDirectory()) {
                 String nombreOriginal = directorioArchivo.getName();
-                String nuevoNombre = "Nuevo_" + nombreOriginal;
+                String nuevoNombre = nuevoNombreUsr + nombreOriginal;
 
                 File nuevoDirectorio = new File(directorioArchivo.getParent(), nuevoNombre);
 
@@ -31,10 +30,10 @@ public class RenombrarDirectorios {
                     System.out.println("Directorio renombrado: " + nombreOriginal + " -> " + nuevoNombre);
 
                     // Llamada recursiva para renombrar los subdirectorios
-                    renombrarDirectoriosInternos(nuevoDirectorio, nuevoNombre);
+                    renombrarDirectoriosInternos(nuevoDirectorio, nuevoNombreUsr);
                 } else {
                     System.out.println("Error al renombrar el directorio: " + nombreOriginal);
-                } 
+                }
             }
         }
     }
